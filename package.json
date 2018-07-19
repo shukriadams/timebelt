@@ -1,0 +1,9 @@
+{
+    "name": "timebelt",
+    "author": "shukri.adams@gmail.com",
+    "description" : "time-related helper",
+    "repository" : "https://shukriadams@bitbucket.org/shukriadams/timebelt.git",
+    "license": "MIT",
+    "dependencies" : {
+    }
+}

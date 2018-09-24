@@ -1,19 +1,43 @@
-let daysDifference = function hoursDifference(before, after){
+let daysDifference = function hoursDifference(after, before){
+    if (typeof before === 'number' || typeof before === 'string')
+        before = new Date(before);
+
+    if (typeof after === 'number' || typeof after === 'string')
+        after = new Date(after);
+        
     let diff = after.getTime() - before.getTime();
     return Math.floor(diff / (1000 * 60 * 60 * 24));
 }
 
-let hoursDifference = function hoursDifference(before, after){
+let hoursDifference = function hoursDifference(after, before){
+    if (typeof before === 'number' || typeof before === 'string')
+        before = new Date(before);
+
+    if (typeof after === 'number' || typeof after === 'string')
+        after = new Date(after);
+        
     let diff = after.getTime() - before.getTime();
     return Math.floor(diff / (1000 * 60 * 60));
 }
 
-let minutesDifference = function hoursDifference(before, after){
+let minutesDifference = function hoursDifference(after, before){
+    if (typeof before === 'number' || typeof before === 'string')
+        before = new Date(before);
+
+    if (typeof after === 'number' || typeof after === 'string')
+        after = new Date(after);
+        
     let diff = after.getTime() - before.getTime();
     return Math.floor(diff / (1000 * 60));
 }
 
-let secondsDifference = function hoursDifference(before, after){
+let secondsDifference = function hoursDifference(after, before){
+    if (typeof before === 'number' || typeof before === 'string')
+        before = new Date(before);
+
+    if (typeof after === 'number' || typeof after === 'string')
+        after = new Date(after);
+        
     let diff = after.getTime() - before.getTime();
     return Math.floor(diff / (1000));
 }

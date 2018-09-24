@@ -1,6 +1,21 @@
+let daysDifference = function hoursDifference(before, after){
+    let diff = after.getTime() - before.getTime();
+    return Math.floor(diff / (1000 * 60 * 60 * 24));
+}
+
 let hoursDifference = function hoursDifference(before, after){
     let diff = after.getTime() - before.getTime();
     return Math.floor(diff / (1000 * 60 * 60));
+}
+
+let minutesDifference = function hoursDifference(before, after){
+    let diff = after.getTime() - before.getTime();
+    return Math.floor(diff / (1000 * 60));
+}
+
+let secondsDifference = function hoursDifference(before, after){
+    let diff = after.getTime() - before.getTime();
+    return Math.floor(diff / (1000));
 }
 
 let toShortDate = function (date, format = 'y/m/d'){
@@ -15,6 +30,9 @@ let toShortDate = function (date, format = 'y/m/d'){
 }
 
 module.exports = {
+    daysDifference,
     hoursDifference,
+    minutesDifference,
+    secondsDifference,
     toShortDate
 }

@@ -1,4 +1,4 @@
-let daysDifference = function hoursDifference(after, before){
+let daysDifference = function daysDifference(after, before){
     if (typeof before === 'number' || typeof before === 'string')
         before = new Date(before);
 
@@ -20,7 +20,7 @@ let hoursDifference = function hoursDifference(after, before){
     return Math.floor(diff / (1000 * 60 * 60));
 }
 
-let minutesDifference = function hoursDifference(after, before){
+let minutesDifference = function minutesDifference(after, before){
     if (typeof before === 'number' || typeof before === 'string')
         before = new Date(before);
 
@@ -31,7 +31,7 @@ let minutesDifference = function hoursDifference(after, before){
     return Math.floor(diff / (1000 * 60));
 }
 
-let secondsDifference = function hoursDifference(after, before){
+let secondsDifference = function secondsDifference(after, before){
     if (typeof before === 'number' || typeof before === 'string')
         before = new Date(before);
 

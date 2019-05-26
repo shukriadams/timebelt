@@ -53,7 +53,33 @@ let toShortDate = function (date, format = 'y/m/d'){
     return format;
 }
 
+/**
+ * Converts seconds (integer or int string) to minutes string representation (M:S). Example,
+ * 120 > '2:00'
+ * 121 > '2:01'
+ */
+let secondsToMinutesString = function (seconds) {
+    if (typeof seconds === 'string')
+        seconds = parseInt(seconds);
+        
+    var minutes = Math.floor(seconds / 60);
+
+    if (seconds > 60 && minutes > 0)
+        seconds = seconds - (minutes * 60);
+
+    minutes = minutes.toString();
+    if (minutes.length == 1)
+        minutes = "0" + minutes;
+        
+    seconds = seconds.toString();
+    if (seconds.length == 1)
+        seconds = "0" + seconds;
+
+    return `${minutes}:${seconds}`;
+};
+
 module.exports = {
+    secondsToMinutesString,
     daysDifference,
     hoursDifference,
     minutesDifference,

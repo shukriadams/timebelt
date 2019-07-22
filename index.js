@@ -78,7 +78,23 @@ let secondsToMinutesString = function (seconds) {
     return `${minutes}:${seconds}`;
 };
 
+/**
+ * Async pause for x milliseconds.
+ */
+let pause = async function(pauseTime){
+    return new Promise(
+        function(resolve, reject){
+            setTimeout(
+                function(){
+                    resolve();
+                }, pauseTime
+            );
+        }
+    );
+}
+
 module.exports = {
+    pause,
     secondsToMinutesString,
     daysDifference,
     hoursDifference,

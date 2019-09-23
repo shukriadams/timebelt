@@ -46,9 +46,32 @@ let toShortDate = function (date, format = 'y/m/d'){
     if (typeof date === 'number' || typeof date === 'string')
         date = new Date(date);
 
+    let month = (date.getMonth() + 1).toString();
+    month = month.length === 2 ? month : `0${month}`;
+
     format = format.replace('y', date.getFullYear());
-    format = format.replace('m', date.getMonth() + 1);
+    format = format.replace('m', month);
     format = format.replace('d', date.getDate() + 1);
+
+    return format;
+}
+
+let toShortTime = function (date, format = 'h:m:s'){
+    if (typeof date === 'number' || typeof date === 'string')
+        date = new Date(date);
+
+    let hours = date.getHours().toString();
+    hours = hours.length === 2 ? hours : `0${hours}`;
+
+    let minutes = date.getMinutes().toString();
+    minutes = minutes.length === 2 ? minutes : `0${minutes}`;
+    
+    let seconds = date.getSeconds().toString();
+    seconds = seconds.length === 2 ? seconds : `0${seconds}`;
+
+    format = format.replace('h', hours);
+    format = format.replace('m', minutes);
+    format = format.replace('s', seconds);
 
     return format;
 }
@@ -100,5 +123,6 @@ module.exports = {
     hoursDifference,
     minutesDifference,
     secondsDifference,
+    toShortTime,
     toShortDate
 }

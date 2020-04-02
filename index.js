@@ -1,4 +1,4 @@
-let daysDifference = function daysDifference(after, before){
+const daysDifference = function daysDifference(after, before){
     if (typeof before === 'number' || typeof before === 'string')
         before = new Date(before);
 
@@ -9,7 +9,8 @@ let daysDifference = function daysDifference(after, before){
     return Math.floor(diff / (1000 * 60 * 60 * 24));
 }
 
-let hoursDifference = function hoursDifference(after, before){
+
+const hoursDifference = function hoursDifference(after, before){
     if (typeof before === 'number' || typeof before === 'string')
         before = new Date(before);
 
@@ -20,7 +21,8 @@ let hoursDifference = function hoursDifference(after, before){
     return Math.floor(diff / (1000 * 60 * 60));
 }
 
-let minutesDifference = function minutesDifference(after, before){
+
+const minutesDifference = function minutesDifference(after, before){
     if (typeof before === 'number' || typeof before === 'string')
         before = new Date(before);
 
@@ -31,7 +33,8 @@ let minutesDifference = function minutesDifference(after, before){
     return Math.floor(diff / (1000 * 60));
 }
 
-let secondsDifference = function secondsDifference(after, before){
+
+const secondsDifference = function secondsDifference(after, before){
     if (typeof before === 'number' || typeof before === 'string')
         before = new Date(before);
 
@@ -42,21 +45,27 @@ let secondsDifference = function secondsDifference(after, before){
     return Math.floor(diff / (1000));
 }
 
-let toShortDate = function (date, format = 'y/m/d'){
+
+/**
+ * Returns short integer-based date string
+ */
+const toShortDate = function (date, format = 'y/m/d'){
     if (typeof date === 'number' || typeof date === 'string')
         date = new Date(date);
 
     let month = (date.getMonth() + 1).toString();
     month = month.length === 2 ? month : `0${month}`;
 
-    format = format.replace('y', date.getFullYear());
-    format = format.replace('m', month);
-    format = format.replace('d', date.getDate() + 1);
-
-    return format;
+    return format.replace('y', date.getFullYear())
+        .replace('m', month)
+        .replace('d', date.getDate() + 1);
 }
 
-let toShortTime = function (date, format = 'h:m:s'){
+
+/**
+ * Returns short integer-based time string
+ */
+const toShortTime = function (date, format = 'h:m:s'){
     if (typeof date === 'number' || typeof date === 'string')
         date = new Date(date);
 
@@ -69,19 +78,18 @@ let toShortTime = function (date, format = 'h:m:s'){
     let seconds = date.getSeconds().toString();
     seconds = seconds.length === 2 ? seconds : `0${seconds}`;
 
-    format = format.replace('h', hours);
-    format = format.replace('m', minutes);
-    format = format.replace('s', seconds);
-
-    return format;
+    return format.replace('h', hours)
+        .replace('m', minutes)
+        .replace('s', seconds);
 }
+
 
 /**
  * Converts seconds (integer or int string) to minutes string representation (M:S). Example,
  * 120 > '2:00'
  * 121 > '2:01'
  */
-let secondsToMinutesString = function (seconds) {
+const secondsToMinutesString = function (seconds) {
     if (typeof seconds === 'string')
         seconds = parseInt(seconds);
         
@@ -92,31 +100,48 @@ let secondsToMinutesString = function (seconds) {
 
     minutes = minutes.toString();
     if (minutes.length == 1)
-        minutes = "0" + minutes;
+        minutes = `0${minutes}`;
         
     seconds = seconds.toString();
     if (seconds.length == 1)
-        seconds = "0" + seconds;
+        seconds = `0${seconds}`;
 
     return `${minutes}:${seconds}`;
 };
 
+
 /**
- * Async pause for x milliseconds.
+ * Pauses current thread with setTimeout.
+ * 
+ * pauseFor : milliseconds to pause for.
  */
-let pause = async function(pauseTime){
+const pause = async function(pauseFor){
     return new Promise(
         function(resolve, reject){
             setTimeout(
                 function(){
                     resolve();
-                }, pauseTime
+                }, pauseFor
             );
         }
     );
 }
 
+
+/**
+ * Returns a date and time string
+ */
+const toShort = function(date, format='d t', dateformat, timeformat){
+    const shortDate =toShortDate(date, dateformat),
+        shortTime = toShortTime(date, timeformat);
+    
+    return format.replace('d', shortDate)
+        .replace('t', shortTime);
+}
+
+
 module.exports = {
+    toShort,
     pause,
     secondsToMinutesString,
     daysDifference,

@@ -140,7 +140,31 @@ const toShort = function(date, format='d t', dateformat, timeformat){
 }
 
 
+/**
+ * adds minutes to a date. date can be a date object or milliseconds
+ */
+const addMinutes = function(datetime, minutes){
+    if (typeof datetime === 'number')
+        datetime = new Date(datetime);
+
+    return new Date(datetime.getTime() + (minutes * 60000));
+};
+
+
+/**
+ * Adds seconds to a date. date can be a date object or milliseconds
+ */
+const addSeconds = function(datetime, seconds){
+    if (typeof datetime === 'number')
+        datetime = new Date(datetime);
+
+    return new Date(datetime.getTime() + (seconds * 10000));
+};
+
+
 module.exports = {
+    addMinutes,
+    addSeconds,
     toShort,
     pause,
     secondsToMinutesString,

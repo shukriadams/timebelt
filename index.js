@@ -141,24 +141,28 @@ const toShort = function(date, format='d t', dateformat, timeformat){
 
 
 /**
- * adds minutes to a date. date can be a date object or milliseconds
+ * Adds minutes to a date. Date can be a date object, string or milliseconds. 
  */
 const addMinutes = function(datetime, minutes){
-    if (typeof datetime === 'number')
+    if (typeof datetime === 'number' || typeof datetime === 'string')
         datetime = new Date(datetime);
 
-    return new Date(datetime.getTime() + (minutes * 60000));
+    return new Date( 
+        datetime.setMinutes (datetime.getMinutes() + seconds)
+    );    
 };
 
 
 /**
- * Adds seconds to a date. date can be a date object or milliseconds
+ * Adds seconds to a date. Date can be a date object, string or milliseconds. 
  */
 const addSeconds = function(datetime, seconds){
-    if (typeof datetime === 'number')
+    if (typeof datetime === 'number' || typeof datetime === 'string')
         datetime = new Date(datetime);
 
-    return new Date(datetime.getTime() + (seconds * 10000));
+    return new Date( 
+        datetime.setSeconds(datetime.getSeconds() + seconds)
+    );
 };
 
 

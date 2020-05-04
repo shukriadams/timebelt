@@ -148,7 +148,7 @@ const addMinutes = function(datetime, minutes){
         datetime = new Date(datetime);
 
     return new Date( 
-        datetime.setMinutes (datetime.getMinutes() + seconds)
+        datetime.setMinutes (datetime.getMinutes() + minutes)
     );    
 };
 

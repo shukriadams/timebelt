@@ -166,6 +166,28 @@ const addSeconds = function(datetime, seconds){
 };
 
 
+/**
+ * returns a 2-digit month from date
+ */
+const toMonth = function(datetime){
+    if (typeof datetime === 'number' || typeof datetime === 'string')
+        datetime = new Date(datetime)
+
+    return ((datetime.getMonth() + 1) < 10 ? '0' : '') + (datetime.getMonth() + 1)
+}
+
+
+/**
+ * returns a 2-digit day from date
+ */
+const toDay = function(datetime){
+    if (typeof datetime === 'number' || typeof datetime === 'string')
+        datetime = new Date(datetime)
+
+    return ((datetime.getDate() + 1) < 10 ? '0' : '') + (datetime.getDate() + 1)
+}
+
+
 module.exports = {
     addMinutes,
     addSeconds,
@@ -177,5 +199,7 @@ module.exports = {
     minutesDifference,
     secondsDifference,
     toShortTime,
-    toShortDate
+    toShortDate,
+    toMonth,
+    toDay
 }

@@ -187,8 +187,27 @@ const toDay = function(datetime){
     return ((datetime.getDate() + 1) < 10 ? '0' : '') + (datetime.getDate() + 1)
 }
 
+const subtractHours = function(datetime, hours){
+    if (typeof datetime === 'number' || typeof datetime === 'string')
+        datetime = new Date(datetime)
+
+    return new Date( 
+        datetime.setHours(datetime.getHours() - hours)
+    )
+}
+
+const addHours = function(datetime, hours){
+    if (typeof datetime === 'number' || typeof datetime === 'string')
+        datetime = new Date(datetime)
+
+    return new Date( 
+        datetime.setHours(datetime.getHours() + hours)
+    )
+}
 
 module.exports = {
+    subtractHours,
+    addHours,
     addMinutes,
     addSeconds,
     toShort,

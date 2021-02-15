@@ -205,7 +205,44 @@ const addHours = function(datetime, hours){
     )
 }
 
+
+/**
+ * Generates a timespan between two datetimes, in simplified string form.
+ * If timespan is longer than day, returns 'daycount  days'
+ * else If timespan is longer than an hour, returns 'hourcount hours'
+ * else If timespan is longer than an hour, returns 'hourcount hours'
+ */
+const timespanString = function(end, start, d='d', h='h', m='m', s='secs'){
+    if (typeof start === 'number' || typeof start === 'string')
+        start = new Date(start)
+
+    if (typeof end === 'number' || typeof end === 'string')
+        end = new Date(end)
+
+    let diff = end.getTime() - start.getTime()
+
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    diff -=  days * (1000 * 60 * 60 * 24)
+
+    let hours = Math.floor(diff / (1000 * 60 * 60))
+    diff -= hours * (1000 * 60 * 60)
+
+    let mins = Math.floor(diff / (1000 * 60))
+
+    if (days >= 1)
+        return days + d
+
+    if (hours >= 1)
+        return hours + h
+    
+    if (mins >= 1)
+        return mins + m
+    
+    return s
+}
+
 module.exports = {
+    timespanString,
     subtractHours,
     addHours,
     addMinutes,

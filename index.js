@@ -167,6 +167,20 @@ const addSeconds = function(datetime, seconds){
 
 
 /**
+ * Adds milliseconds to a date. The date can be a date object, string, or milliseconds.
+ * @param {number} milliseconds
+ */
+const addMilliseconds = function(datetime, milliseconds){
+    if (typeof datetime === 'number' || typeof datetime === 'string')
+        datetime = new Date(datetime);
+
+    return new Date( 
+        datetime.setMilliseconds(datetime.getMilliseconds() + milliseconds)
+    );
+}
+
+
+/**
  * returns a 2-digit month from date
  */
 const toMonth = function(datetime){
@@ -247,6 +261,7 @@ module.exports = {
     addHours,
     addMinutes,
     addSeconds,
+    addMilliseconds,
     toShort,
     pause,
     secondsToMinutesString,

@@ -51,14 +51,17 @@ const secondsDifference = function secondsDifference(after, before){
  */
 const toShortDate = function (date, format = 'y/m/d'){
     if (typeof date === 'number' || typeof date === 'string')
-        date = new Date(date);
+        date = new Date(date)
 
-    let month = (date.getMonth() + 1).toString();
-    month = month.length === 2 ? month : `0${month}`;
+    let month = (date.getMonth() + 1).toString()
+    month = month.length === 2 ? month : `0${month}`
+
+    let day = (date.getDate()).toString()
+    day = day.length === 2 ? day : `0${day}`
 
     return format.replace('y', date.getFullYear())
         .replace('m', month)
-        .replace('d', date.getDate() + 1);
+        .replace('d', day)
 }
 
 

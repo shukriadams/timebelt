@@ -275,5 +275,15 @@ module.exports = {
     toShortTime,
     toShortDate,
     toMonth,
-    toDay
+    toDay,
+    
+    /**
+     * Converts .net datetime ticks to Javascript date object
+     */
+    ticksToDate(ticks){
+        const time = ticks / 10000,
+            timeDiff = Math.abs(new Date(0, 0, 1).setFullYear(1))
+
+        return new Date(time - timeDiff)
+    }
 }

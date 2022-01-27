@@ -258,6 +258,10 @@ const timespanString = function(end, start, d='d', h='h', m='m', s='secs'){
     return s
 }
 
+
+
+
+
 module.exports = {
     timespanString,
     subtractHours,
@@ -276,7 +280,28 @@ module.exports = {
     toShortDate,
     toMonth,
     toDay,
+
+    getYear(date){
+        if (typeof date === 'number' || typeof date === 'string')
+            date = new Date(date)
+
+        return date.getFullYear()
+    },
+
+    /**
+     * calculates week nr for a given date
+     * from https://gist.github.com/IamSilviu/5899269
+     */
+    weekNumber(date){
+        if (typeof date === 'number' || typeof date === 'string')
+            date = new Date(date)
     
+        const firstDayOfYear = new Date(date.getFullYear(), 0, 1),
+            pastDaysOfYear = (date - firstDayOfYear) / 86400000
+    
+        return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7)
+    },
+
     /**
      * Converts .net datetime ticks to Javascript date object
      */

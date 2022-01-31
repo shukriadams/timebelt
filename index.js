@@ -287,7 +287,15 @@ module.exports = {
 
         return date.getFullYear()
     },
+    
+    toShortYear(date){
+        if (typeof date === 'number' || typeof date === 'string')
+            date = new Date(date)
 
+        return date.getFullYear().toString().substr(-2))
+    },
+    
+    
     /**
      * calculates week nr for a given date
      * from https://gist.github.com/IamSilviu/5899269

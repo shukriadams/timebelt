@@ -292,7 +292,7 @@ module.exports = {
         if (typeof date === 'number' || typeof date === 'string')
             date = new Date(date)
 
-        return date.getFullYear().toString().substr(-2))
+        return date.getFullYear().toString().substr(-2)
     },
     
     

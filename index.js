@@ -265,6 +265,23 @@ const timespanString = function(end, start, d='d', h='h', m='m', s='secs'){
 module.exports = {
     timespanString,
     subtractHours,
+
+    addDays(datetime, days){
+        if (typeof datetime === 'number' || typeof datetime === 'string')
+            datetime = new Date(datetime)
+    
+        return new Date( 
+            datetime.setHours(datetime.getHours() + (24 * days))
+        )
+    },
+
+    toMonthName(date, months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]){
+        if (typeof datetime === 'number' || typeof datetime === 'string')
+            datetime = new Date(datetime)
+
+        return months[date.getMonth()]
+    },
+
     addHours,
     addMinutes,
     addSeconds,

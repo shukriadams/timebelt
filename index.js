@@ -271,7 +271,7 @@ module.exports = {
             datetime = new Date(datetime)
     
         return new Date( 
-            datetime.setHours(datetime.getHours() + (24 * days))
+            datetime.setDate(datetime.getDate() + days)
         )
     },
 

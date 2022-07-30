@@ -6,7 +6,7 @@ module.exports = {
      * else If timespan is longer than an hour, returns 'hourcount hours'
      * else If timespan is longer than an hour, returns 'hourcount hours'
      */
-    timespanString(end, start, d='d', h='h', m='m', s='secs'){
+    timespanString(end, start, d='d', h='h', m='m', s='s'){
         if (typeof start === 'number' || typeof start === 'string')
             start = new Date(start)
     
@@ -35,6 +35,85 @@ module.exports = {
         return s
     },
 
+
+    /**
+     * Generates a timespan from two dates, then returns a suitable string description of the time difference, with
+     * proper plural. Egs
+     * 3 seconds
+     * 1 minute
+     * 4 days
+     */
+    timespanStringPlural(end, start){
+        if (typeof start === 'number' || typeof start === 'string')
+            start = new Date(start)
+    
+        if (typeof end === 'number' || typeof end === 'string')
+            end = new Date(end)
+    
+        let diff = end.getTime() - start.getTime()
+    
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+        diff -=  days * (1000 * 60 * 60 * 24)
+    
+        const hours = Math.floor(diff / (1000 * 60 * 60))
+        diff -= hours * (1000 * 60 * 60)
+    
+        const mins = Math.floor(diff / (1000 * 60))
+        diff -= mins * (1000 * 60)
+        
+        const secs = Math.floor(diff / 1000)
+        
+        if (days >= 1)
+            return this.dayCount(days)
+    
+        if (hours >= 1)
+            return this.hoursCount(hours)
+        
+        if (mins >= 1)
+            return this.minutesCount(mins)
+        
+        return this.secondsCount(secs)
+    },
+
+    yearCount(years){
+        return `${years} year${years > 1 ? 's': ''}`
+    },
+
+    dayCount(days){
+        return `${days} day${days > 1 ? 's': ''}` 
+    },
+
+    hoursCount(hours){
+        return `${hours} hour${hours > 1 ? 's': ''}` 
+    },
+
+    minutesCount(minutes){
+        return `${minutes} minute${minutes > 1 ? 's': ''}` 
+    },
+
+    secondsCount(seconds){
+        return `${seconds} second${seconds > 1 ? 's': ''}` 
+    },
+
+    /**
+     * Converts minutes amount to suitable number + description, egs
+     * "2 minutes"
+     * "1 hours"
+     * "18 days"
+     * "300 years"
+    */
+    minutesToPeriodString(totalMinutes){
+        if (totalMinutes > 525600)
+            return this.yearCount(Math.floor(totalMinutes / 525600)) 
+
+        if (totalMinutes > 1440)
+            return this.dayCount(Math.floor(totalMinutes / 1440))
+
+        if (totalMinutes > 60)
+            return this.hoursCount(Math.floor(totalMinutes / 60))
+
+        return this.minutesCount(Math.floor(totalMinutes))
+    },
 
     subtractHours(datetime, hours){
         if (typeof datetime === 'number' || typeof datetime === 'string')

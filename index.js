@@ -76,23 +76,23 @@ module.exports = {
     },
 
     yearCount(years){
-        return `${years} year${years > 1 ? 's': ''}`
+        return `${years} year${years === 1 ? '' : 's'}`
     },
 
     dayCount(days){
-        return `${days} day${days > 1 ? 's': ''}` 
+        return `${days} day${days === 1 ? '' : 's'}` 
     },
 
     hoursCount(hours){
-        return `${hours} hour${hours > 1 ? 's': ''}` 
+        return `${hours} hour${hours === 1 ? '' : 's'}` 
     },
 
     minutesCount(minutes){
-        return `${minutes} minute${minutes > 1 ? 's': ''}` 
+        return `${minutes} minute${minutes === 1 ? '' : 's'}` 
     },
 
     secondsCount(seconds){
-        return `${seconds} second${seconds > 1 ? 's': ''}` 
+        return `${seconds} second${seconds === 1 ? '' : 's'}` 
     },
 
     /**
